@@ -21,6 +21,10 @@ const reducers = (
     }
 ) => {
     const localStorageData = JSON.parse(localStorage.getItem("todo"));
+    if (!localStorageData) {
+        localStorage.setItem("todo", JSON.stringify([]));
+    }
+    console.log("localStorageData", localStorageData);
     switch (type) {
         case "add":
             localStorage.setItem(
