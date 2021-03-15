@@ -5,6 +5,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
+import Typography from "@material-ui/core/Typography";
 import React, { useState } from "react";
 import { initialState } from "../pages/_app";
 
@@ -29,6 +31,9 @@ export default function UpdateTodo({ open, updateState, close, update }: T) {
         }));
     };
     const reset = () => {
+        setState(updateState);
+    };
+    const reset2 = () => {
         setState(initialState);
     };
     const { title, description } = state;
@@ -65,15 +70,28 @@ export default function UpdateTodo({ open, updateState, close, update }: T) {
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={close} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={reset} color="primary">
-                        Reset
-                    </Button>
-                    <Button onClick={() => update(state)} color="primary">
-                        Update & Save
-                    </Button>
+                    <Tooltip title="Cancel">
+                        <Button onClick={close} color="primary">
+                            Cancel
+                        </Button>
+                    </Tooltip>
+                    <Tooltip
+                        title="Click to Reset Todo &
+                                Double Click to Reset Default Value"
+                    >
+                        <Button
+                            onClick={reset}
+                            onDoubleClick={reset2}
+                            color="primary"
+                        >
+                            Reset
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title="Update & Save Todo">
+                        <Button onClick={() => update(state)} color="primary">
+                            Update & Save
+                        </Button>
+                    </Tooltip>
                 </DialogActions>
             </Dialog>
         </div>

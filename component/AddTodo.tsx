@@ -1,6 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/AddCircle";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import React, { useContext, useState } from "react";
@@ -53,14 +54,18 @@ export default function AddTodo() {
                 />
             </Grid>
             <Grid item xs={1}>
-                <IconButton onClick={reset}>
-                    <RotateLeftIcon color="secondary" />
-                </IconButton>
+                <Tooltip title="Reset">
+                    <IconButton onClick={reset}>
+                        <RotateLeftIcon color="secondary" />
+                    </IconButton>
+                </Tooltip>
             </Grid>
             <Grid item xs={1}>
-                <IconButton onClick={submitHandler}>
-                    <AddIcon color="secondary" />
-                </IconButton>
+                <Tooltip title="Add Todo">
+                    <IconButton onClick={submitHandler}>
+                        <AddIcon color="secondary" />
+                    </IconButton>
+                </Tooltip>
             </Grid>
         </Grid>
     );

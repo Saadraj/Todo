@@ -1,3 +1,4 @@
+import { Tooltip } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -11,7 +12,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import React, { useContext, useState } from "react";
 import { initialState, StateContext } from "../pages/_app";
 import UpdateTodo from "./UpdateTodo";
-
 
 export default function TableView() {
     const { state, dispatch } = useContext(StateContext);
@@ -35,6 +35,7 @@ export default function TableView() {
 
     const handleClose = () => {
         setOpen(false);
+        setTemp(initialState);
     };
     const update = (obj: {
         id: string;
@@ -83,16 +84,20 @@ export default function TableView() {
                                     {row.description}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <IconButton
-                                        onClick={() => handleClickOpen(row)}
-                                    >
-                                        <EditIcon color="primary" />
-                                    </IconButton>
-                                    <IconButton
-                                        onClick={() => deleteHandler(row)}
-                                    >
-                                        <DeleteIcon color="error" />
-                                    </IconButton>
+                                    <Tooltip title="Edit Todo">
+                                        <IconButton
+                                            onClick={() => handleClickOpen(row)}
+                                        >
+                                            <EditIcon color="primary" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Delete Todo">
+                                        <IconButton
+                                            onClick={() => deleteHandler(row)}
+                                        >
+                                            <DeleteIcon color="error" />
+                                        </IconButton>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         )
